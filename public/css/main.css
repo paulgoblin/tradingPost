@@ -1,0 +1,28 @@
+.hud p{
+  font-size: 14px;
+  padding:.5em;
+  display: none;
+  max-width: 300px;
+}
+
+.hud {
+  height: 2em;
+  text-align: center;
+}
+
+.form-group {
+  max-width: 400px;
+  padding: 4em;
+  display: inline-block;
+  vertical-align: top; 
+  text-align: left; 
+}
+
+.form {
+  margin: 0 auto;
+  text-align: center;
+}
+
+.btn {
+  margin: 10px 0px;
+}

@@ -1,0 +1,29 @@
+doctype html
+html(lang="en")
+  include ./includes/head.jade
+  link(href="css/home.css" rel="stylesheet")
+  body
+    .container
+      include ./includes/header.jade
+
+      .jumbotron
+        h2= user.username
+        .avatar
+          if user.avatar
+            img(src=user.avatar)
+          else
+            img(src='http://theawesomedaily.com/wp-content/uploads/2014/01/tumblr_inline_mmb9fhWEWX1qz4rgp.png')
+          .input-group
+            input.form-control#imageUrl(type='text' placeholder='Add profile pic url')
+            span.input-group-btn
+              button.btn#addProfPic Add
+        .bio
+          if user.bio
+            p= user.bio
+          else
+            p Double click to complete your bio. Double click again to save.
+
+
+
+    include ./includes/scripts.jade
+    script(src='js/home.js')
