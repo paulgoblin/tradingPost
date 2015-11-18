@@ -1,0 +1,59 @@
+doctype html
+html(lang="en")
+  include ./includes/head.jade
+  link(href="css/home.css" rel="stylesheet")
+  body
+    .container
+      include ./includes/navbar.jade
+      h1 Trades
+
+      .jumbotron
+        h2 Items for trade
+        .row
+          .col-xs-12.tableDiv
+            table.table
+              if tradeItems 
+                thead
+                  tr
+                    th Image
+                    th Name
+                    th Description
+                    th Offers
+                    th Make Offer
+                tbody.itemsTable
+                    each item in tradeItems
+                      tr.item(data-id= item._id.toString())
+                        td.imgUrl
+                          img(src= item.imgUrl)
+                        td.name= item.name
+                        td.description= item.description
+                        td.trade
+                          input(checked= item.forTrade type='checkbox')
+                        td
+                          //- .dropdown
+                          //-   button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                          //-     | Item to offer
+                          //-     span.caret
+                          //-   ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                          //-     if rooms[0]
+                          //-       each room in rooms
+                          //-         li.roomSelect
+                          //-           a(href='#!' data-mongoid= room._id.toString())= room.name
+              else
+                tr
+                  p No items available for trade
+                            
+
+                tr.item#sample
+                  td.imgUrl
+                    img
+                  td.name 
+                  td.description 
+                  td.trade
+                    input(type='checkbox')
+                  td
+                    i.fa.fa-trash-o.del
+
+
+    include ./includes/scripts.jade
+    script(src='js/trades.js')

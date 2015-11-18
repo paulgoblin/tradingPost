@@ -27,6 +27,7 @@ app.use(express.static('public'));
 app.use('/', require('./routes/index'));
 app.use('/items', require('./routes/items'));
 app.use('/home', require('./routes/home'));
+app.use('/trades', require('./routes/trades'));
 app.use('/users', require('./routes/users'));
 
 // 404 HANDLER

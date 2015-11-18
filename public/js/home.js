@@ -5,7 +5,6 @@ function init(){
   $('#addItem').click(addItem);
   $('.itemsTable').on('click','.del',confirmDelete);
   $('.itemsTable').on('click','.trade input', toggleTrade);
-
 }
 
 function toggleTrade(e){
