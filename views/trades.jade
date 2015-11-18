@@ -22,25 +22,25 @@ html(lang="en")
                     th Offers
                     th Make Offer
                 tbody.itemsTable
-                    each item in tradeItems
-                      tr.item(data-id= item._id.toString())
-                        td.owner= item.owner.username
+                    each titem in tradeItems
+                      tr.item(data-id= titem._id.toString())
+                        td.owner= titem.owner.username
                         td.imgUrl
-                          img(src= item.imgUrl)
-                        td.name= item.name
-                        td.description= item.description
+                          img(src= titem.imgUrl)
+                        td.name= titem.name
+                        td.description= titem.description
                         td.trade
-                          input(checked= item.forTrade type='checkbox')
+                          input(checked= titem.forTrade type='checkbox')
                         td
-                          .dropdown
-                            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                              | Item to offer
-                              span.caret
-                            ul.dropdown-menu(aria-labelledby='dropdownMenu1')
-                              if myItems[0]
-                                each item in myItems
-                                  li.itemSelect
-                                    a(href='#!' data-mongoid= item._id.toString())= item.name
+                          if titem.owner._id != user
+                              button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                                | Item to offer
+                                span.caret
+                              ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                                if myItems[0]
+                                  each mitem in myItems
+                                    li.itemSelect
+                                      a(href='#!' data-mongoid= mitem._id.toString())= mitem.name
               else
                 tr
                   p No items available for trade
