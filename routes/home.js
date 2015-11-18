@@ -13,5 +13,7 @@ router.get('/', authMiddleWare, function(req, res) {
   })
 });
 
+//POPULATE HOME WITH ITEMS
+
 
 module.exports = router;

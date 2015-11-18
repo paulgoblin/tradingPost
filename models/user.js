@@ -9,17 +9,12 @@ var User;
 var userSchema = Schema({
   username: { type: String, required: true, unique: true },
   password: { type: String, required: true },
-  bio: { type: String},
-  avatar: { type: String},
-  friends: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
+  email: {type: String},
+  avatar: { type: String}
+  // bio: { type: String},
+  // friends: {type: mongoose.Schema.Types.ObjectId, ref: 'User'}
 
 })
-
-// userSchema.method.getUserInfo = function (userId, cb){
-//   console.log(userId);
-//   err = null;
-//   cb(err,'you got it boss');
-// }
 
 userSchema.statics.register = function (user,cb){
   var username = user.username;

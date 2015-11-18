@@ -1,28 +1,34 @@
 'use strict'
 
 function init(){
-  $('.bio').dblclick(editBio);
-  $('.bio').dblclick(saveBio);
-  // $(window).unload(saveBio);
-  $('#addProfPic').click(saveAvatar);
+  console.log('home js loaded');
+  $('#addItem').click(addItem);
+
 }
 
-function saveAvatar(){
-  let avUrl = $('#imageUrl').val();
-  console.log('avUrl',avUrl)
+function addItem(){
+  let name = $('#name').val();
+  let imgUrl = $('#url').val();
+  let description = $('#description').val();
 
-  if (!avUrl) {
-    $('#imageUrl').attr('placeholder','provide img url!')
-    return;
+  $('#name').val('');
+  $('#url').val('');
+  $('#description').val('');
+
+  let item = {
+    name: name,
+    imgUrl: imgUrl,
+    description: description
   }
+
   $.ajax({
-    url: '/users/profPic',
+    url: '/items/create',
     method: 'POST',
-    data: {url: avUrl}
+    data: item
   })
   .done(function(data){
     console.log('retrieved data ', data);
-    $('.avatar img').attr('src',avUrl)
+    // $('.avatar img').attr('src',avUrl)
   })
   .fail(function(error){
     console.error('error saving ', error);
@@ -31,29 +37,33 @@ function saveAvatar(){
 
 
 }
-
-function editBio(e){
-  let isEditable= $('.bio').is('.editable');
-  $('.bio').prop('contenteditable',!isEditable).toggleClass('editable');
-}
-
-function saveBio(){
-  let bio = $('.bio p').text();
-  console.log('bio')
-  $.ajax({
-    // async: false,
-    url: '/users/bio',
-    method: 'POST',
-    data: {bio: bio}
-  })
-  .done(function(data){
-    console.log('retrieved data ', data);
-  })
-  .fail(function(error){
-    console.error('error saving ', error);
-  });
-
-};
 
 
 $(document).ready(init)
+
+
+// function saveAvatar(){
+//   let avUrl = $('#imageUrl').val();
+//   console.log('avUrl',avUrl)
+
+//   if (!avUrl) {
+//     $('#imageUrl').attr('placeholder','provide img url!')
+//     return;
+//   }
+  // $.ajax({
+  //   url: '/users/profPic',
+  //   method: 'POST',
+  //   data: {url: avUrl}
+  // })
+  // .done(function(data){
+  //   console.log('retrieved data ', data);
+  //   $('.avatar img').attr('src',avUrl)
+  // })
+  // .fail(function(error){
+  //   console.error('error saving ', error);
+  // });
+
+
+
+// }
+

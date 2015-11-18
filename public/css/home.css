@@ -1,4 +1,17 @@
-.avatar img{
+.tableDiv {
+  background-color: white;
+}
+
+input {
+  display: inline-block;
+  width:20%;
+}
+
+
+
+
+
+/*.avatar img{
   max-width: 200px;
   display: block;
   margin:1em 0em;
@@ -30,4 +43,4 @@
 
 .editable{
   background:#EFF
-}
+}*/

@@ -8,7 +8,7 @@ var morgan = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
 
-var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/userauth';
+var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/tradingpost';
 var mongoose = require('mongoose');
 mongoose.connect(mongoUrl)
 
@@ -25,6 +25,7 @@ app.use(express.static('public'));
 
 // ROUTES
 app.use('/', require('./routes/index'));
+app.use('/items', require('./routes/items'));
 app.use('/home', require('./routes/home'));
 app.use('/users', require('./routes/users'));
 
