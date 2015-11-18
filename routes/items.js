@@ -15,4 +15,11 @@ router.post('/create', authMiddleWare, function(req,res){
   })
 })
 
+router.delete('/delete/:id', authMiddleWare, function(req,res){
+  var itemId = req.params.id;
+  Item.remove({_id: itemId}, function(err,item){
+    res.status(err ? 400 : 200).send(err || 'item deleted')
+  })
+})
+
 module.exports = router;

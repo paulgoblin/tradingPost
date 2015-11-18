@@ -3,6 +3,46 @@
 function init(){
   console.log('home js loaded');
   $('#addItem').click(addItem);
+  $('.itemsTable').on('click','.del',confirmDelete);
+
+}
+
+function confirmDelete(e){
+  swal({
+    title: "Are you sure?",
+    text: "You will not be able to recover this imaginary file!",
+    type: "warning",
+    showCancelButton: true,
+    confirmButtonColor: "#DD6B55",
+    confirmButtonText: "Yes, delete it!",
+    closeOnConfirm: false },
+    function(isConfirm){  
+      if (isConfirm){
+        deleteItem(e)
+      } else{
+        swal("Cancelled", 'Item not deleted', "error")
+      }
+    });
+}
+
+function deleteItem(e){
+  var $tr = $(e.target).closest('tr');
+  var itemId = $tr.data('id');
+  console.log("item id:", itemId)
+
+
+  $.ajax({
+    url: '/items/delete/' + itemId,
+    method: 'DELETE'
+  })
+  .done(function(data){
+    console.log('retrieved data ', data);
+    $tr.remove();
+    swal("Deleted!", "Your item has been deleted.", "success");
+  })
+  .fail(function(error){
+    console.error('error saving ', error);
+  });
 
 }
 
