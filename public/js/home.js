@@ -28,7 +28,18 @@ function addItem(){
   })
   .done(function(data){
     console.log('retrieved data ', data);
-    // $('.avatar img').attr('src',avUrl)
+    
+    var $tr = $('#sample').clone().removeAttr('id');
+    $tr.data('id',data._id);
+    $tr.find('img').attr('src',data.imgUrl);
+    $tr.find('.name').text(data.name);
+    $tr.find('.description').text(data.description);
+    $tr.find('.trade').prop('checked',data.forTrade);
+    $('.itemsTable').append($tr)
+
+    console.log('item id is: ',$tr.data('id'));
+
+
   })
   .fail(function(error){
     console.error('error saving ', error);

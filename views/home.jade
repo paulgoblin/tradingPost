@@ -17,12 +17,35 @@ html(lang="en")
           .col-xs-12.tableDiv
             table.table
               thead
-                th image
-                th name
-                th description
-                th head
-                th delete
-              tbody
+                tr
+                  th Image
+                  th Name
+                  th Description
+                  th For trade
+                  th Delete
+              tbody.itemsTable
+                if items 
+                  each item in items
+                    tr.item(data-id= item._id.toString())
+                      td.imgUrl
+                        img(src= item.imgUrl)
+                      td.name= item.name
+                      td.description= item.description
+                      td.trade
+                        input(checked= item.forTrade type='checkbox')
+                      td
+                        i.fa.fa-trash-o.del
+
+                tr.item#sample
+                  td.imgUrl
+                    img
+                  td.name 
+                  td.description 
+                  td.trade
+                    input(type='checkbox')
+                  td
+                    i.fa.fa-trash-o.del
+
 
 
         //- .avatar
