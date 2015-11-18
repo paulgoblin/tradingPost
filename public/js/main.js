@@ -24,6 +24,7 @@ function registerUser(){
   let uname = $('#username').val();
   let pword = $('#password').val();
   let conf = $('#confirm').val();
+  let email = $('#email').val();
 
   if (pword != conf) {
     hudReg('Passwords do not match.')
@@ -33,7 +34,7 @@ function registerUser(){
   $.ajax({
     url:'/users/register',
     method:'POST',
-    data: {username: uname, password:pword}
+    data: {username: uname, password:pword, email: email}
   }).done( function( data ){
     console.log(data)
     hudReg( `Account for ${data.username} created.` );

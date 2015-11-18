@@ -19,15 +19,16 @@ var userSchema = Schema({
 userSchema.statics.register = function (user,cb){
   var username = user.username;
   var password = user.password;
-  User.findOne({username: username}, function(err, user){
-    if (err || user) return cb(err || 'Username taken.');
+  var email = user.email;
+  User.findOne({username: username}, function(err, dbUser){
+    if (err || dbUser) return cb(err || 'Username taken.');
     bcrypt.genSalt(10, function(err1, salt) {
       bcrypt.hash(password, salt, function(err2, hash) {
         if (err1 || err2) return cb(err1 || err2);
         var newUser = new User();
-        console.log('get u info function:', newUser.getUserInfo)
         newUser.username = username;
         newUser.password = hash;
+        newUser.email = email;
         newUser.save(function(err, savedUser){
           if (err) return (cb(err))
           savedUser.password = null;
