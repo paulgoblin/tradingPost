@@ -1,7 +1,7 @@
 'use strict'
 
 var router = require('express').Router();
-var User = require('../models/User');
+var User = require('../models/user');
 
 var authMiddleWare = require('../config/auth');
 

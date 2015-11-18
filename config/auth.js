@@ -1,6 +1,6 @@
 'use strict';
 
-var User = require('../models/User');
+var User = require('../models/user');
 
 module.exports = function(req, res, next){
   var userId = req.cookies.userId;
