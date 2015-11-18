@@ -15,6 +15,7 @@ html(lang="en")
               if tradeItems 
                 thead
                   tr
+                    th Owner
                     th Image
                     th Name
                     th Description
@@ -23,22 +24,23 @@ html(lang="en")
                 tbody.itemsTable
                     each item in tradeItems
                       tr.item(data-id= item._id.toString())
+                        td.owner= item.owner.username
                         td.imgUrl
                           img(src= item.imgUrl)
                         td.name= item.name
                         td.description= item.description
                         td.trade
                           input(checked= item.forTrade type='checkbox')
-                        td.owner= item.owner.username
-                          //- .dropdown
-                          //-   button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                          //-     | Item to offer
-                          //-     span.caret
-                          //-   ul.dropdown-menu(aria-labelledby='dropdownMenu1')
-                          //-     if rooms[0]
-                          //-       each room in rooms
-                          //-         li.roomSelect
-                          //-           a(href='#!' data-mongoid= room._id.toString())= room.name
+                        td
+                          .dropdown
+                            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                              | Item to offer
+                              span.caret
+                            ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                              if myItems[0]
+                                each item in myItems
+                                  li.itemSelect
+                                    a(href='#!' data-mongoid= item._id.toString())= item.name
               else
                 tr
                   p No items available for trade
