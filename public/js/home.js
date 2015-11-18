@@ -4,6 +4,27 @@ function init(){
   console.log('home js loaded');
   $('#addItem').click(addItem);
   $('.itemsTable').on('click','.del',confirmDelete);
+  $('.itemsTable').on('click','.trade input', toggleTrade);
+
+}
+
+function toggleTrade(e){
+  var $tr = $(e.target).closest('tr');
+  var itemId = $tr.data('id');
+  console.log("item id:", itemId)
+
+  $.ajax({
+    url: '/items/toggle/' + itemId,
+    method: 'put'
+  })
+  .done(function(data){
+    console.log('retrieved data ', data);
+    // $tr.remove();
+    // swal("Deleted!", "Your item has been deleted.", "success");
+  })
+  .fail(function(error){
+    console.error('error saving ', error);
+  });
 
 }
 
@@ -28,8 +49,6 @@ function confirmDelete(e){
 function deleteItem(e){
   var $tr = $(e.target).closest('tr');
   var itemId = $tr.data('id');
-  console.log("item id:", itemId)
-
 
   $.ajax({
     url: '/items/delete/' + itemId,
