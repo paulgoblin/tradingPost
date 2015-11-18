@@ -11,15 +11,15 @@ router.get('/', authMiddleWare, function(req, res) {
   let userId = req.cookies.userId;
   Item.find({'forTrade':true}, function(err, tradeItems){
     if(err) return res.status(400).send(err);
-    console.log('tradeItems ', tradeItems)
+    // console.log("owner of items to be traded: ", tradeItems.owner)
     Item.find({'owner':userId}, function(err, myItems){
       if(err) return res.status(400).send(err);
       // var tradeItems = tradeItems || [];
       var myItems = myItems || [];
-      console.log("for trade ",tradeItems,'my items', myItems)
+      // console.log("for trade ",tradeItems,'my items', myItems)
       res.render("trades",{user: userId, tradeItems: tradeItems, myItems: myItems});
     });
-  })
+  }).populate('owner');
 });
 
 module.exports = router;

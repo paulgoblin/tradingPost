@@ -29,7 +29,7 @@ html(lang="en")
                         td.description= item.description
                         td.trade
                           input(checked= item.forTrade type='checkbox')
-                        td
+                        td.owner= item.owner.username
                           //- .dropdown
                           //-   button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
                           //-     | Item to offer
