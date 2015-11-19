@@ -23,7 +23,7 @@ function acceptOffer (e){
     $(e.target).closest('tr').remove();
     let $tr = $("[data-id='" + itemId + "']");
     $tr.data('id',data._id);
-    $tr.find('.imgUrl').attr('src',data.imgUrl);
+    $tr.find('.imgUrl img').attr('src',data.imgUrl);
     $tr.find('.name').text(data.name);
     $tr.find('.description').text(data.description);
     $tr.find('.trade input').attr('checked',false);
