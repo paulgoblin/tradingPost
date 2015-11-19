@@ -56,9 +56,9 @@ router.post('/rejectOffer/:myItemId/:offerItemId', authMiddleWare, function(req,
   })
 })
 
-router.post('/rejectOffer/:myItemId/:offerItemId', authMiddleWare, function(req, res){
-  Item.rejectOffer(req.params.myItemId, req.params.offerItemId, function(err, message){
-    res.status(err ? 400 : 200).send(message)
+router.post('/accpetOffer/:myItemId/:offerItemId', authMiddleWare, function(req, res){
+  Item.acceptOffer(req.params.myItemId, req.params.offerItemId, function(err, offerItem){
+    res.status(err ? 400 : 200).send(offerItem)
   })
 })
 

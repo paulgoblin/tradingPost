@@ -24,7 +24,8 @@ itemSchema.statics.addOffer = function (myItemId, tradeItemId, cb){
       if (err) return cb(err,'error finding all items');
 
       for (var item in allItems){
-        if (tradeItem.offers.indexOf(myItemId) != -1) {
+        console.log('SAME ITEM')
+        if (item.offers.indexOf(myItemId) != -1) {
           return cb(null,'Item already offered')
         }
       }
@@ -50,6 +51,29 @@ itemSchema.statics.rejectOffer = function (itemId, offerId, cb){
     })
   })
 }
+
+itemSchema.statics.acceptOffer = function (itemId, offerId, cb){
+  Item.findOne({'_id': itemId}, function(err, myItem){
+    if (err) return cb(err,'couldnt find my item');
+    Item.findOne({'_id': offerId}, function(err, offerItem){
+      if (err) return cb(err,'couldnt find offer item');
+      let meId = myItem.owner;
+      myItem.owner = offerItem.owner;
+      offerItem.owner = meId;
+      myItem.offers = [];
+      offerItem.offers =[];
+      myItem.save(function(err){
+        if (err) return cb(err,'error saving first');
+        offerItem.save(function(err){
+          if (err) return cb(err,'error saving');
+          cb(null,offerItem)
+        })
+      })
+    })
+  })
+}
+
+
 
 
 

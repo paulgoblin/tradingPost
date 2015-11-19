@@ -15,14 +15,19 @@ function acceptOffer (e){
   let itemId = $(e.target).closest('.offerTable').data('id');
 
   $.ajax({
-    url: '/items/accpetOffer/' + itemId + '/' + 'offerId',
+    url: '/items/accpetOffer/' + itemId + '/' + offerId,
     method: 'POST'
   })
   .done(function(data){
     console.log('retrieved data ', data);
-    if (data === '1') {
-      $(e.target).closest('tr').remove();
-    }
+    $(e.target).closest('tr').remove();
+    let $tr = $("[data-id='" + itemId + "']");
+    $tr.data('id',data._id);
+    $tr.find('.imgUrl').attr('src',data.imgUrl);
+    $tr.find('.name').text(data.name);
+    $tr.find('.description').text(data.description);
+    $tr.find('.trade input').attr('checked',false);
+    $tr.find('.offers').html('NEW')
   })
   .fail(function(error){
     console.error('error saving ', error);
