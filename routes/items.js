@@ -40,7 +40,7 @@ router.delete('/delete/:id', authMiddleWare, function(req,res){
 
 router.post('/addOffer/:myItem/:tradeItem', authMiddleWare, function(req, res){
   Item.addOffer(req.params.myItem, req.params.tradeItem, function(err, message){
-    res.status(err ? 400 : 200).send(err || message)
+    res.status(err ? 400 : 200).send(message)
   })
 })
 

@@ -30,7 +30,11 @@ html(lang="en")
                         td.name= titem.name
                         td.description= titem.description
                         td.trade
-                          input(checked= titem.forTrade type='checkbox')
+                          if titem.offers
+                            each offer in titem.offers
+                              .off= offer.owner.username + ' : ' + offer.name
+                          else
+                            p 0
                         td
                           if titem.owner._id != user 
                             button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')

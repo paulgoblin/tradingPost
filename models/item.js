@@ -2,6 +2,7 @@
 
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
+var deepPopulate = require('mongoose-deep-populate')(mongoose);
 
 let Item;
 
@@ -13,6 +14,8 @@ let itemSchema = mongoose.Schema({
   owner: { type: mongoose.Schema.Types.ObjectId , ref: 'User' },
   offers: [{ type: mongoose.Schema.Types.ObjectId , ref: 'Item' }]
 });
+
+itemSchema.plugin(deepPopulate);
 
 itemSchema.statics.addOffer = function (myItemId, tradeItemId, cb){
   Item.findOne({'_id': tradeItemId}, function(err,tradeItem){
@@ -29,7 +32,7 @@ itemSchema.statics.addOffer = function (myItemId, tradeItemId, cb){
       tradeItem.offers.push(myItemId);
       tradeItem.save(function(err){
         if (err) return cb(err,'Error saving offer');
-        cb(null,'Offer successfully added');
+        cb(null,1);
       })
     })  
   })
