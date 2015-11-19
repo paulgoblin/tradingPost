@@ -15,8 +15,14 @@ function makeOffer(e){
   })
   .done(function(data){
     console.log('retrieved data ', data);
-    // $tr.remove();
-    // swal("Deleted!", "Your item has been deleted.", "success");
+    if (data==1){
+      let username = $('body').data('username');
+      let itemName = $(e.target).text();
+      console.log(username, itemName);
+      let $div = $('<div>').addClass('off').text(username + ' : ' + itemName ) 
+      $(e.target).closest('tr').find('.trade').append($div);
+      
+    }
   })
   .fail(function(error){
     console.error('error saving ', error);

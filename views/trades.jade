@@ -2,12 +2,12 @@ doctype html
 html(lang="en")
   include ./includes/head.jade
   link(href="css/home.css" rel="stylesheet")
-  body
+  body(data-username= username)
     .container
       include ./includes/navbar.jade
-      h1 Trades
+      h1 Open Trades
 
-      .jumbotron
+      .jumbotron= `you are ${username}`
         h2 Items for trade
         .row
           .col-xs-12.tableDiv

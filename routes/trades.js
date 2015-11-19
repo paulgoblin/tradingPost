@@ -10,7 +10,7 @@ var authMiddleWare = require('../config/auth');
 
 router.get('/', authMiddleWare, function(req, res) {
   let userId = req.cookies.userId;
-  Item.find({'forTrade':true}).deepPopulate('offers.owner').exec(function(err, tradeItems){
+  Item.find({'forTrade':true}).deepPopulate('offers.owner').populate('owner').exec(function(err, tradeItems){
     if(err) return res.status(400).send(err);
     // console.log("owner of items to traded: ", tradeItems.owner)
     Item.find({'owner':userId}, function(err, myItems){
@@ -18,8 +18,7 @@ router.get('/', authMiddleWare, function(req, res) {
       // var tradeItems = tradeItems || [];
       var myItems = myItems || [];
       // console.log("for trade ",tradeItems,'my items', myItems)
-      console.log('all for trade:', tradeItems)
-      res.render("trades",{user: userId, tradeItems: tradeItems, myItems: myItems});
+      res.render("trades",{user: userId, username: req.username, tradeItems: tradeItems, myItems: myItems});
     });
   });
 });

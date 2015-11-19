@@ -31,8 +31,9 @@ itemSchema.statics.addOffer = function (myItemId, tradeItemId, cb){
 
       tradeItem.offers.push(myItemId);
       tradeItem.save(function(err){
+        console.log('saved correctly')
         if (err) return cb(err,'Error saving offer');
-        cb(null,1);
+        cb(null,'1');
       })
     })  
   })
