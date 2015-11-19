@@ -32,15 +32,15 @@ html(lang="en")
                         td.trade
                           input(checked= titem.forTrade type='checkbox')
                         td
-                          if titem.owner._id != user
-                              button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
-                                | Item to offer
-                                span.caret
-                              ul.dropdown-menu(aria-labelledby='dropdownMenu1')
-                                if myItems[0]
-                                  each mitem in myItems
-                                    li.itemSelect
-                                      a(href='#!' data-mongoid= mitem._id.toString())= mitem.name
+                          if titem.owner._id != user 
+                            button.btn.btn-default.dropdown-toggle(type='button', data-toggle='dropdown', aria-haspopup='true', aria-expanded='true')
+                              | Make offer
+                              span.caret
+                            ul.dropdown-menu(aria-labelledby='dropdownMenu1')
+                              if myItems[0]
+                                each mitem in myItems
+                                  li.itemSelect
+                                    a(href='#!' data-id= mitem._id.toString())= mitem.name
               else
                 tr
                   p No items available for trade

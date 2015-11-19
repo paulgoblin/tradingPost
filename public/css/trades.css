@@ -1,0 +1,18 @@
+.tableDiv {
+  background-color: white;
+  border-radius: 5px;
+}
+
+input {
+  display: inline-block;
+  width:20%;
+}
+
+#sample {
+  display: none;
+}
+
+.itemsTable img {
+  height: 50px;
+}
+

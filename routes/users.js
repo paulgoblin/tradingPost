@@ -23,8 +23,9 @@ router.post('/register', function(req,res){
 
 router.post('/login', function(req, res){
   User.authenticate(req.body, function(err, user){
+    if (err) return res.status(400).send(err)
     res.cookie( 'userId', user._id);
-    res.status(err ? 400 : 200).send(err || user)
+    res.status(200).send(user)
   })
 })
 
