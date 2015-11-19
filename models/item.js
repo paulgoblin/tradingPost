@@ -39,22 +39,30 @@ itemSchema.statics.addOffer = function (myItemId, tradeItemId, cb){
   })
 }
 
-
-    // Item.find({'_id': offeredItemId}, function(err,offeredItem){
-    //   if (err) cb(err);
-    //   if (this.offers.indexOf(offeredItem._id) == -1){
-    //     tradeItem.offers.push(req.params.myItem);
-    //     tradeItem.save(function(err){
-    //       if (err) return res.status(400).send('error saving');
-    //       res.status(200).send('Offer made')
-    //     })
-    //   }
-      
-    // })
+itemSchema.statics.rejectOffer = function (itemId, offerId, cb){
+  Item.findOne({'_id': itemId}, function(err, item){
+    if (err) return cb(err,'couldnt find traded item');
+    let offerIndex = item.offers.indexOf(offerId);
+    item.offers.splice(offerIndex-1,1);
+    item.save(function(err){
+      if (err) return cb(err,'error saving item');
+      cb(null,'1')
+    })
+  })
+}
 
 
 
 Item = mongoose.model('Item', itemSchema);
 
 module.exports = Item;
+
+
+
+
+
+
+
+
+
 

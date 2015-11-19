@@ -44,18 +44,24 @@ router.post('/addOffer/:myItem/:tradeItem', authMiddleWare, function(req, res){
   })
 })
 
+router.post('/reject/:myItem/:tradeItem', authMiddleWare, function(req, res){
+  Item.addOffer(req.params.myItem, req.params.tradeItem, function(err, message){
+    res.status(err ? 400 : 200).send(message)
+  })
+})
 
-  // Item.find({'_id': req.params.tradeItem}, function(err, tradeItem){
-  //   console.log('found trade Item: ', tradeItem)
-  //   if (err) return res.status(400).send(err);
-  //   Item.addOffer(req.params.myItem, tradeItem._id, function(err,tradeItem){
-  //   // tradeItem.addOffer(req.params.myItem, function(err,tradeItem){
-  //     if (err) return res.status(400).send(err);
-  //     res.send(tradeItem)
+router.post('/rejectOffer/:myItemId/:offerItemId', authMiddleWare, function(req, res){
+  Item.rejectOffer(req.params.myItemId, req.params.offerItemId, function(err, message){
+    res.status(err ? 400 : 200).send(message)
+  })
+})
 
-  //     })
+router.post('/rejectOffer/:myItemId/:offerItemId', authMiddleWare, function(req, res){
+  Item.rejectOffer(req.params.myItemId, req.params.offerItemId, function(err, message){
+    res.status(err ? 400 : 200).send(message)
+  })
+})
 
-  // })
 module.exports = router;
 
 

@@ -24,6 +24,7 @@ html(lang="en")
                   th Description
                   th For trade
                   th Delete
+                  th Offers
               tbody.itemsTable
                 if items 
                   each item in items
@@ -36,6 +37,10 @@ html(lang="en")
                         input(checked= item.forTrade type='checkbox')
                       td
                         i.fa.fa-trash-o.del
+                      td.offers
+                        if item.offers[0]
+                          i.fa.fa-envelope-o.fa-2.showOffers(data-toggle="modal" data-target="#myModal")
+
 
                 tr.item#sample
                   td.imgUrl
@@ -47,6 +52,38 @@ html(lang="en")
                   td
                     i.fa.fa-trash-o.del
 
+    #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
+      .modal-dialog(role='document')
+        .modal-content
+          .modal-body
+            button.close(type='button', data-dismiss='modal', aria-label='Close')
+              span(aria-hidden='true') ×
+            if items
+              each item in items
+                .offerTable(data-id= item._id.toString())
+                  h3= `Offers for ${item.name}`
+                  table.table
+                    thead
+                      tr
+                        th Image
+                        th Owner
+                        th Name
+                        th Description
+                        th Accept
+                        th Reject
+                    tbody.itemsTable
+                      if item.offers
+                        each offer in item.offers
+                          tr.item(data-id= offer._id.toString())
+                            td.imgUrl
+                              img(src= offer.imgUrl)
+                            td.owner= offer.owner.username
+                            td.name= offer.name
+                            td.description= offer.description
+                            td
+                              button.btn.btn-success.accept Accept
+                            td
+                              button.btn.btn-danger.reject Reject
 
     include ./includes/scripts.jade
     script(src='js/home.js')

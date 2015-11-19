@@ -5,6 +5,57 @@ function init(){
   $('#addItem').click(addItem);
   $('.itemsTable').on('click','.del',confirmDelete);
   $('.itemsTable').on('click','.trade input', toggleTrade);
+  $('.itemsTable').on('click','.showOffers',showOffers);
+  $('.modal-body').on('click','.reject', rejectOffer)
+  $('.modal-body').on('click','.accept', acceptOffer)
+}
+
+function acceptOffer (e){
+  let offerId = $(e.target).closest('tr').data('id');
+  let itemId = $(e.target).closest('.offerTable').data('id');
+
+  $.ajax({
+    url: '/items/accpetOffer/' + itemId + '/' + 'offerId',
+    method: 'POST'
+  })
+  .done(function(data){
+    console.log('retrieved data ', data);
+    if (data === '1') {
+      $(e.target).closest('tr').remove();
+    }
+  })
+  .fail(function(error){
+    console.error('error saving ', error);
+  });
+
+}
+
+function rejectOffer (e){
+  let offerId = $(e.target).closest('tr').data('id');
+  let itemId = $(e.target).closest('.offerTable').data('id');
+
+  $.ajax({
+    url: '/items/rejectOffer/' + itemId + '/' + 'offerId',
+    method: 'POST'
+  })
+  .done(function(data){
+    console.log('retrieved data ', data);
+    if (data === '1') {
+      $(e.target).closest('tr').remove();
+    }
+  })
+  .fail(function(error){
+    console.error('error saving ', error);
+  });
+
+}
+
+function showOffers(e){
+  console.log($(e.target))
+  let id = $(e.target).closest('tr').data('id')
+  console.log('id',id);
+  $('.offerTable').hide();
+  $('.modal-body').find("[data-id='" + id + "']").show();
 }
 
 function toggleTrade(e){
