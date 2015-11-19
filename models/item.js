@@ -23,10 +23,12 @@ itemSchema.statics.addOffer = function (myItemId, tradeItemId, cb){
     Item.find({}, function(err,allItems){
       if (err) return cb(err,'error finding all items');
 
-      for (var item in allItems){
-        console.log('SAME ITEM')
-        if (item.offers.indexOf(myItemId) != -1) {
-          return cb(null,'Item already offered')
+      for (var i = 0; i < allItems.length; i ++){
+        var item = allItems[i];
+        if (item.offers){
+          if (item.offers.indexOf(myItemId) != -1) {
+            return cb(null,'Item already offered')
+          }
         }
       }
 
