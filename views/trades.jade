@@ -5,10 +5,30 @@ html(lang="en")
   link(href="css/trades.css" rel="stylesheet")
   body(data-username= username)
     .container
-      include ./includes/navbar.jade
+      nav.navbar.navbar-inverse
+        .container-fluid
+          div
+            ul.nav.navbar-nav
+              li.dropdown(role='presentation')
+                a.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false')
+                  span.glyphicon.glyphicon-menu-hamburger
+                ul.dropdown-menu
+                  li
+                    a(href='/users/edit/profile') Edit Profile
+              li.navHome
+                a(href='/home') Home
+              li.active.navTrades
+                a(href='/trades') Trades
+            ul.nav.navbar-nav.navbar-right
+              li.navHome
+                a.white= username
+              li
+                a(href='#')#logout
+                  span.glyphicon.glyphicon-log-out
+                  |  Log out
       h1 Open Trades
 
-      .jumbotron= `You are ${username}.`
+      .jumbotron
         h2 Items for trade
         .row
           .col-xs-12.tableDiv
@@ -31,11 +51,9 @@ html(lang="en")
                         td.name= titem.name
                         td.description= titem.description
                         td.trade
-                          if titem.offers.length
+                          if titem.offers
                             each offer in titem.offers
                               .off= offer.owner.username + ' : ' + offer.name
-                          else
-                            .off 0
                         td
                           if titem.owner._id != user
                             .dropdown
