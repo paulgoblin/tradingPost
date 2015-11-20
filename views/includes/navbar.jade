@@ -1,8 +1,13 @@
 nav.navbar.navbar-inverse
   .container-fluid
-    .navbar-header
     div
       ul.nav.navbar-nav
+        li.dropdown(role='presentation')
+          a.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false')
+            span.glyphicon.glyphicon-menu-hamburger
+          ul.dropdown-menu
+            li
+              a(href='/users/edit/profile') Edit Profile
         li.active.navHome
           a(href='/home') Home
         li.active.navTrades
@@ -12,9 +17,3 @@ nav.navbar.navbar-inverse
           a(href='#')#logout
             span.glyphicon.glyphicon-log-out
             |  Log out
-        li.dropdown(role='presentation')
-          a.dropdown-toggle(data-toggle='dropdown', href='#', role='button', aria-haspopup='true', aria-expanded='false')
-            span.glyphicon.glyphicon-menu-hamburger
-          ul.dropdown-menu
-            li
-              a(href='/users/edit/profile') Edit Profile
