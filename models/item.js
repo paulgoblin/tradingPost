@@ -63,7 +63,10 @@ itemSchema.statics.acceptOffer = function (itemId, offerId, cb){
       myItem.owner = offerItem.owner;
       offerItem.owner = meId;
       myItem.offers = [];
+      myItem.forTrade = false;
       offerItem.offers =[];
+      offerItem.forTrade = false;
+
       myItem.save(function(err){
         if (err) return cb(err,'error saving first');
         offerItem.save(function(err){
@@ -74,9 +77,6 @@ itemSchema.statics.acceptOffer = function (itemId, offerId, cb){
     })
   })
 }
-
-
-
 
 
 Item = mongoose.model('Item', itemSchema);
