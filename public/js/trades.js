@@ -2,6 +2,7 @@
 
 function init(){
   $('.table').on('click','.itemSelect', makeOffer)
+  
 }
 
 function makeOffer(e){

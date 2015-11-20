@@ -22,9 +22,9 @@ html(lang="en")
                   th Image
                   th Name
                   th Description
-                  th For trade
-                  th Delete
-                  th Offers
+                  th.trade For trade
+                  th.del Delete
+                  th.offers Offers
               tbody.itemsTable
                 if items 
                   each item in items
@@ -35,8 +35,8 @@ html(lang="en")
                       td.description= item.description
                       td.trade
                         input(checked= item.forTrade type='checkbox')
-                      td
-                        i.fa.fa-trash-o.del
+                      td.del
+                        i.fa.fa-trash-o.fa-lg.del
                       td.offers
                         if item.offers[0]
                           i.fa.fa-envelope-o.fa-2.showOffers(data-toggle="modal" data-target="#myModal")
@@ -49,8 +49,8 @@ html(lang="en")
                   td.description 
                   td.trade
                     input(type='checkbox')
-                  td
-                    i.fa.fa-trash-o.del
+                  td.del
+                    i.fa.fa-trash-o.fa-2x.del
 
     #myModal.modal.fade(tabindex='-1', role='dialog', aria-labelledby='myModalLabel')
       .modal-dialog(role='document')

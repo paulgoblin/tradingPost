@@ -20,6 +20,15 @@ input {
   display: none;
 }
 
+.del, .offers, .trade{
+  text-align: center;
+}
+
+.del i, .trade input, .offer i {
+  cursor:pointer;
+}
+
+
 
 
 
