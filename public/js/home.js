@@ -47,6 +47,7 @@ function rejectOffer (e){
     console.log('retrieved data ', data);
     if (data === '1') {
       $(e.target).closest('tr').remove();
+      $('tbody').find("[data-id='" + itemId + "']").last('td').empty();
     }
   })
   .fail(function(error){
@@ -74,8 +75,6 @@ function toggleTrade(e){
   })
   .done(function(data){
     console.log('retrieved data ', data);
-    // $tr.remove();
-    // swal("Deleted!", "Your item has been deleted.", "success");
   })
   .fail(function(error){
     console.error('error saving ', error);
@@ -165,30 +164,4 @@ function addItem(){
 
 
 $(document).ready(init)
-
-
-// function saveAvatar(){
-//   let avUrl = $('#imageUrl').val();
-//   console.log('avUrl',avUrl)
-
-//   if (!avUrl) {
-//     $('#imageUrl').attr('placeholder','provide img url!')
-//     return;
-//   }
-  // $.ajax({
-  //   url: '/users/profPic',
-  //   method: 'POST',
-  //   data: {url: avUrl}
-  // })
-  // .done(function(data){
-  //   console.log('retrieved data ', data);
-  //   $('.avatar img').attr('src',avUrl)
-  // })
-  // .fail(function(error){
-  //   console.error('error saving ', error);
-  // });
-
-
-
-// }
 
