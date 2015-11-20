@@ -28,41 +28,6 @@ input {
   cursor:pointer;
 }
 
-
-
-
-
-
-/*.avatar img{
-  max-width: 200px;
-  display: block;
-  margin:1em 0em;
-  border-radius: 5px;
+.offers i {
+  color: red;
 }
-
-.avatar {
-  display: inline-block;
-}
-
-.input-group {
-  max-width: 200px
-}
-
-.bio {
-  width: calc(100% - 260px);
-  min-height: 2em;
-  background: white;
-  border-radius: 5px;
-  display: inline-block;
-  vertical-align: top;
-  margin: 1em 0 1em 60px;
-  border: 1px solid white;
-}
-
-.bio p {
-  padding: 1em;
-}
-
-.editable{
-  background:#EFF
-}*/
