@@ -8,20 +8,19 @@ var mailer = require('../models/mailer')
 
 
 router.post('/register', function(req,res){
-  console.log('req.cookies',req.cookies)
+  console.log('req.cookies',req.cookies, req.body)
   User.register(req.body, function(err,savedUser){
+    console.log(err, savedUser,'register model response');
     if (err) {
       res.status(400).send(err);
     } else{
-      mailer.sendWelcome(savedUser, function(err,body){
-        console.log('email body:',err, body);
-        res.send()
-      });
+      res.send(savedUser)
      }
   });
 });
 
 router.post('/login', function(req, res){
+  console.log(req.body,'user data');
   User.authenticate(req.body, function(err, user){
     if (err) return res.status(400).send(err)
     res.cookie( 'userId', user._id);
@@ -57,8 +56,3 @@ router.post('/profPic', function(req, res){
 })
 
 module.exports = router;
-
-
-
-
-

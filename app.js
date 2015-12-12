@@ -1,12 +1,13 @@
 'use strict';
 
-var PORT = process.env.PORT || 3000;
+var PORT = process.env.PORT || 5000;
 
 var express = require('express');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
 var cookieParser = require('cookie-parser');
+var cors = require('cors')
 
 var mongoUrl = process.env.MONGOLAB_URI || 'mongodb://localhost/tradingpost';
 var mongoose = require('mongoose');
@@ -15,6 +16,9 @@ mongoose.connect(mongoUrl)
 var app = express();
 
 app.set('view engine', 'jade');
+
+//cors
+app.use(cors());
 
 // GENERAL MIDDLEWARE
 app.use(morgan('dev'));
@@ -40,11 +44,3 @@ app.use(function(req, res){
 app.listen(PORT, function(){
   console.log('Listening on port ', PORT);
 });
-
-
-
-
-
-
-
-

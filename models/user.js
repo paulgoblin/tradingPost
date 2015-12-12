@@ -4,7 +4,7 @@ var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 var bcrypt = require('bcrypt');
 
-var User; 
+var User;
 
 var userSchema = Schema({
   username: { type: String, required: true, unique: true },
@@ -49,15 +49,10 @@ userSchema.statics.authenticate = function(inputUser,cb){
       dbUser.password = null;
 
       cb(null, dbUser)
-    }) 
+    })
   })
 }
 
 
 User = mongoose.model('User', userSchema);
 module.exports = User;
-
-
-
-
-

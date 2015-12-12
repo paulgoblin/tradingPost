@@ -30,7 +30,7 @@ function registerUser(){
     hudReg('Passwords do not match.')
     return;
   }
-  
+
   $.ajax({
     url:'/users/register',
     method:'POST',
@@ -49,7 +49,7 @@ function registerUser(){
 function loginUser(){
   let uname = $('#loginName').val();
   let pword = $('#loginPword').val();
-  
+
   $.ajax({
     url:'/users/login',
     method:'POST',
@@ -63,9 +63,9 @@ function loginUser(){
   })
 
   clearForm($('.login'))
-
+  
 }
- 
+
 function clearForm($form){
   let $inputs = $form.children('input');
   for(let i = 0; i < $inputs.length; i ++) {

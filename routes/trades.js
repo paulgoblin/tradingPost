@@ -5,7 +5,6 @@ var router = express.Router();
 var User = require('../models/user');
 var Item = require('../models/item');
 
-
 var authMiddleWare = require('../config/auth');
 
 router.get('/', authMiddleWare, function(req, res) {
